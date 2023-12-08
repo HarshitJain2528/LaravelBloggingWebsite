@@ -1,32 +1,20 @@
-@extends('layouts.main')
+@extends('AdminFiles.layouts.main')
 
 @section('admin-dashboard-section')
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid justify-content-end">
-            <a class="navbar-brand" href="#">Admin Panel</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Comments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+    @include('AdminFiles.layouts.navbar')
+    
     <div class="container dashboard-content">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @elseif(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="row">
             <div class="col-lg-4">
                 <div class="card bg-primary text-white dashboard-card">

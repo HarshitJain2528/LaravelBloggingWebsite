@@ -1,31 +1,7 @@
-@extends('layouts.main')
+@extends('AdminFiles.layouts.main')
 
 @section('admin-settings-section')
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid justify-content-end">
-            <a class="navbar-brand" href="#">Admin Panel</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="comments.html">Comments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="users.html">Users</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('AdminFiles.layouts.navbar')
 
     <!-- Settings Section -->
     <div class="container dashboard-content">

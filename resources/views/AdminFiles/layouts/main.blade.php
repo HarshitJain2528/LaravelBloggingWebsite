@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('AdminFiles.layouts.header')
     @yield('admin-login-section')
     @yield('admin-dashboard-section')
     @yield('admin-posts-section')
@@ -8,4 +8,4 @@
     @yield('admin-notification-section')
     @yield('admin-media-section')
     @yield('admin-backup-section')
-@include('layouts.footer')
+@include('AdminFiles.layouts.footer')

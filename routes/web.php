@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminControllers\ViewController;
+use App\Http\Controllers\AdminControllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [ViewController::class, 'index']);
+Route::middleware(['admin.auth'])->controller(ViewController::class)->prefix('admin')->group(function (){
+    Route::get('dashboard', 'dashboard');
+    Route::get('posts', 'posts');
+    Route::get('comments', 'comments');
+    Route::get('users', 'users');
 });
+Route::post('/admin-login', [AuthController::class, 'adminLogin'])->name('admin.login');
+Route::get('/admin-logout', [AuthController::class, 'adminLogout']);
