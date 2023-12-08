@@ -1,0 +1,127 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+.header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+}
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #343a40;
+    justify-content: flex-end;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.navbar-toggler {
+    border-color: #ffffff;
+}
+.navbar-nav .nav-link {
+    color: #ffffff;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.navbar-nav .nav-link:hover {
+    color: #17a2b8;
+}
+.navbar-nav .active .nav-link {
+    color: #17a2b8 !important;
+}
+
+/* Dashboard Styles */
+.dashboard-content {
+    margin-top: 60px;
+    padding: 20px;
+}
+.dashboard-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+.dashboard-card .card-body {
+    padding: 20px;
+}
+.dashboard-card .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.dashboard-card .card-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.comments-section {
+    margin-bottom: 20px;
+}
+.comments-section h2 {
+    margin-bottom: 10px;
+}
+.comments-list {
+    list-style: none;
+    padding: 0;
+}
+.comments-list li {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.comments-list li.approved {
+    background-color: #dff0d8;
+}
+.comments-list li.pending {
+    background-color: #f9f9f9;
+}
+.comment-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+
+.users-section {
+    margin-bottom: 20px;
+}
+.users-section h2 {
+    margin-bottom: 10px;
+}
+.users-list {
+    list-style: none;
+    padding: 0;
+}
+.users-list li {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.user-actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px;
+}
