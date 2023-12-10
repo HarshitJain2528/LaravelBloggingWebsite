@@ -20,7 +20,7 @@
                 <div class="card bg-primary text-white dashboard-card">
                     <div class="card-body">
                         <h5 class="card-title">Total Posts</h5>
-                        <p class="card-text">123</p>
+                        <p class="card-text">{{$totalPosts}}</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="card bg-success text-white dashboard-card">
                     <div class="card-body">
                         <h5 class="card-title">Total Comments</h5>
-                        <p class="card-text">456</p>
+                        <p class="card-text">{{$totalComments}}</p>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="card bg-warning text-dark dashboard-card">
                     <div class="card-body">
                         <h5 class="card-title">Total Users</h5>
-                        <p class="card-text">789</p>
+                        <p class="card-text">{{$totalUsers}}</p>
                     </div>
                 </div>
             </div>

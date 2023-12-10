@@ -8,4 +8,5 @@
     @yield('admin-notification-section')
     @yield('admin-media-section')
     @yield('admin-backup-section')
+    @yield('content')
 @include('AdminFiles.layouts.footer')

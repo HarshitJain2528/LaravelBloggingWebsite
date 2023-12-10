@@ -1,59 +1,38 @@
+<!-- Updated Blade File -->
 @extends('AdminFiles.layouts.main')
 
 @section('admin-comments-section')
-
     @include('AdminFiles.layouts.navbar')
 
     <!-- Comments Section -->
     <div class="container dashboard-content">
         <div class="comments-section">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <h2>All Comments</h2>
             <ul class="comments-list">
-                <!-- Sample Comments (Replace with actual data) -->
-                <li class="approved">
-                    <p>Comment 1 - Approved</p>
-                    <div class="comment-actions">
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                </li>
-                <li class="pending">
-                    <p>Comment 2 - Pending</p>
-                    <div class="comment-actions">
-                        <button class="btn btn-sm btn-success">Approve</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                </li>
-                <!-- ... Add more comments ... -->
+                @foreach($comments as $comment)
+                    <li class="approved">
+                        <p>Comments: {{ $comment->comments }}</p>
+                        <p>Post Title: {{ $comment->post->title }}</p>
+                        <p>Post Category: {{ $comment->category->categoryname }}</p>
+                        <div class="comment-actions">
+                            <a href="{{route('comments.delete', $comment->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </li>
+                @endforeach
             </ul>
         </div>
+        
+        <hr>
 
-        <div class="comments-section">
-            <h2>Pending Comments</h2>
-            <ul class="comments-list">
-                <!-- Pending Comments (Replace with actual data) -->
-                <li class="pending">
-                    <p>Comment 3 - Pending</p>
-                    <div class="comment-actions">
-                        <button class="btn btn-sm btn-success">Approve</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                </li>
-                <!-- ... Add more pending comments ... -->
-            </ul>
-        </div>
-
-        <div class="comments-section">
-            <h2>Approved Comments</h2>
-            <ul class="comments-list">
-                <!-- Approved Comments (Replace with actual data) -->
-                <li class="approved">
-                    <p>Comment 4 - Approved</p>
-                    <div class="comment-actions">
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                </li>
-                <!-- ... Add more approved comments ... -->
-            </ul>
+        <!-- Pagination Links inside a div -->
+        <div class="pagination-links">
+            {{ $comments->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection

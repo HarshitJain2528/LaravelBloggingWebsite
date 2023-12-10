@@ -5,44 +5,55 @@
     @include('AdminFiles.layouts.navbar')
 
     <div class="container dashboard-content">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <h2>All Posts</h2>
+        <div class="row justify-content-end mb-3">
+            <div class="col-auto">
+                <form action="{{ route('posts.search') }}" method="get">
+                    @csrf
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" name="category" class="form-control form-control-sm" placeholder="Search by category...">
+                        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Category</th>
                     <th>Author</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Sample Post Rows (Replace with actual data) -->
-                <tr>
-                    <td>Sample Post 1</td>
-                    <td>John Doe</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Sample Post 2</td>
-                    <td>Jane Smith</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <!-- ... Add more rows for actual posts ... -->
+                @foreach($posts as $post)
+                    <tr>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->category->categoryname }}</td>
+                        <td>{{ $post->user->name }}</td>
+                        <td>
+                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-info">View</a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
         
         <hr>
 
-        <h2>Categories</h2>
-        <ul class="list-group">
-            <li class="list-group-item">Category 1</li>
-            <li class="list-group-item">Category 2</li>
-            <!-- ... Add more categories ... -->
-        </ul>
+        <!-- Pagination Links inside a div -->
+        <div class="pagination-links">
+            {{ $posts->links('pagination::bootstrap-5') }}
+        </div>
+    
     </div>
 @endsection

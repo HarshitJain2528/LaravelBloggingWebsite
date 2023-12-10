@@ -16,7 +16,8 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             return redirect('/admin/dashboard')->with(['success' => 'Login Successful']);
-        } else {
+        } 
+        else {
             return redirect()->back()->with(['error' => 'Invalid credentials']);
         }
     }

@@ -5,51 +5,32 @@
 
     <div class="container dashboard-content">
         <div class="users-section">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <h2>All Users</h2>
             <ul class="list-group">
-                <!-- Sample Users (Replace with actual data) -->
-                <li class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">User 1</h5>
-                    </div>
-                    <p class="mb-1">Email: user1@example.com</p>
-                    <div class="user-actions">
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">User 2</h5>
-                    </div>
-                    <p class="mb-1">Email: user2@example.com</p>
-                    <div class="user-actions">
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                        <button class="btn btn-sm btn-danger">Delete</button>
-                    </div>
-                </li>
-                <!-- ... Add more users ... -->
+                @foreach ($users as $user)
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{$user->name}}</h5>
+                        </div>
+                        <p class="mb-1">Email: {{$user->email}}</p>
+                        <div class="user-actions">
+                            <a href="{{route('user.delete', $user->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </li>
+                @endforeach
             </ul>
         </div>
+        <hr>
 
-        <div class="users-section">
-            <h2>Add New User</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password">
-                </div>
-                <!-- Add more fields for roles, permissions, etc. as needed -->
-                <button type="submit" class="btn btn-primary">Create User</button>
-            </form>
+        <!-- Pagination Links inside a div -->
+        <div class="pagination-links">
+            {{ $users->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection
