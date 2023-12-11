@@ -17,7 +17,7 @@ class AdminAuthMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('admin')->check()) {
-            return redirect('/')->with(['error' => 'You do have the access to other pages.']); 
+            return redirect('/admin')->with(['error' => 'You do have the access to other pages.']); 
         }
         return $next($request);
     }

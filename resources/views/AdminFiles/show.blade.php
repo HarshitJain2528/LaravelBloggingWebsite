@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             @foreach ($posts as $post)
                 
-            <div class="col-md-8" style="width: 51.666667%;">
+            <div class="col-md-8" style="width: 57.666667%;">
                 <div class="card">
                     <img src="{{ $post->image }}" class="card-img-top" alt="Post Image">
                     <div class="card-body">

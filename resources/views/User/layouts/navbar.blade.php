@@ -10,30 +10,30 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="{{url('/')}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Blogs</a>
+            <a class="nav-link" href="{{url('user/blogs')}}">Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{{url('user/about')}}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="{{url('user/contact')}}">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="{{url('user/login-form')}}">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
+            <a class="nav-link" href="{{url('user/signup-form')}}">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link add-post-btn" aria-label="Add Post">
+            <a href="{{url('user/addPost')}}" class="nav-link add-post-btn" aria-label="Add Post">
               <i class="fas fa-plus"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a class="nav-link" href="{{url('user/settings')}}"><i class="fas fa-cog"></i> Settings</a>
           </li>
         </ul>
       </div>

@@ -7,16 +7,17 @@
   <div class="container">
     <div class="login-card">
       <h2 class="text-center mb-4">SignUp to Your Blog</h2>
-      <form class="login-form">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
+      <form class="login-form" method="post" action="{{ url('register-user') }}">
+        @csrf
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
         <div class="position-relative">
-          <input id="passwordField" type="password" placeholder="Password" class="form-control" required>
+          <input id="passwordField" name="password" type="password" placeholder="Password" class="form-control" required>
           <span  class="position-absolute top-50 end-10 translate-middle-y" onclick="togglePassword()">
             <i id="eyeIcon" class="fa fa-eye" aria-hidden="true"></i>
           </span>
         </div>
-        <input type="submit" value="Login">
+        <input type="submit" value="Sign Up">
         <!-- Text "Or Login" -->
         <p class="text-center my-3">Or Signup With</p>
         <!-- Social login buttons -->

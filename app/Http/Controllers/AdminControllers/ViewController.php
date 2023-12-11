@@ -31,13 +31,13 @@ class ViewController extends Controller
 
     public function comments()
     {
-        $comments = Comment::with('post', 'category')->paginate(3);
+        $comments = Comment::with('post', 'category')->paginate(5);
         return view('AdminFiles.comments', compact('comments'));
     }
 
     public function users()
     {
-        $users = User::paginate(5);
+        $users = User::paginate(10);
         return view('AdminFiles.users', compact('users'));
     }
 

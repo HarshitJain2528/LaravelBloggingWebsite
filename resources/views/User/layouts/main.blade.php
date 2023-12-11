@@ -9,4 +9,5 @@
     @yield('user-blogs-section')
     @yield('user-addposts-section')
     @yield('user-about-section')
+    @yield('user-otpverify-section')
 @include('User.layouts.footer')
