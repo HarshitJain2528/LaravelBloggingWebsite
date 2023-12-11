@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminControllers\AdminController;
 */
 
 Route::get('/', function(){
-    return view('contact');
+    return view('User.about');
 });
 // Route::get('/', [ViewController::class, 'index']);
 // Route::middleware(['admin.auth'])->controller(ViewController::class)->prefix('admin')->group(function (){
