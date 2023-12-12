@@ -14,7 +14,7 @@
             @csrf
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <div class="card p-4 shadow-sm">
+                    <div class="card p-4 shadow-sm " id="settingsCard">
                         <h3>Dark Mode</h3>
                         <hr>
                         <!-- Dark Mode Toggle -->
@@ -53,16 +53,18 @@
 
     <!-- JavaScript Section -->
     <script>
-        // Function to enable dark mode
-        function enableDarkMode() {
+       // Function to enable dark mode
+       function enableDarkMode() {
             document.body.classList.add('dark-mode');
             localStorage.setItem('darkMode', 'enabled');
+            document.getElementById('settingsCard').classList.add('dark-mode-card'); // Apply dark mode to the card
         }
 
         // Function to disable dark mode
         function disableDarkMode() {
             document.body.classList.remove('dark-mode');
             localStorage.setItem('darkMode', 'disabled');
+            document.getElementById('settingsCard').classList.remove('dark-mode-card');
         }
 
         // Function to check user's preference on page load

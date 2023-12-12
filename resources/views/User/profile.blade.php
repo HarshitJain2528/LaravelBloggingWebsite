@@ -2,15 +2,14 @@
 
 @section('user-profile-section')
   @include('User.layouts.navbar')
-  <!-- Profile Header -->
+  @foreach ($users as $user)
+      
   <header class="profile-header">
     <img src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar">
-    <div class="profile-name">John Doe</div>
+    <div class="name">{{$user->name}}</div>
     <div class="profile-bio">Blogger | Passionate Writer | Coffee Lover</div>
     <div class="profile-stats">
       <div class="stat">Posts: 50</div>
-      <div class="stat">Followers: 1000</div>
-      <div class="stat">Following: 200</div>
     </div>
     <a href="#" class="btn profile-edit-btn">Edit Profile</a>
   </header>
@@ -32,4 +31,6 @@
       <!-- More posts can be added similarly -->
     </div>
   </section>
+  @endforeach
+
 @endsection

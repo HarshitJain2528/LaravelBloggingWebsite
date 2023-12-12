@@ -70,4 +70,10 @@ class UserViewController extends Controller
         $blogs = Post::where('id', $id)->get();
         return view('User.showblog', compact('blogs'));
     }
+
+    public function userProfile($id)
+    {
+        $users = User::where('id', $id)->get();
+        return view('User.profile', compact('users'));
+    }
 }

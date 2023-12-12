@@ -29,6 +29,7 @@ Route::controller(UserViewController::class)->group(function (){
     Route::get('user/contact', 'contactPage');
     Route::get('user/addPost', 'addPostPage');
     Route::get('user/showblogs/{id}', 'showBlog');
+    Route::get('profile-show/{id}', 'userProfile');
     Route::get('user/settings', 'settingsPage')->name('settings');
 });
 Route::post('register-user', [UserAuthController::class, 'register']);
@@ -39,8 +40,6 @@ Route::post('otp-verify/{user}', [OTPVerificationController::class, 'verify']);
 Route::get('/otp-resend/{user}', [OTPVerificationController::class, 'resendOtp'])->name('otp.resend');
 Route::post('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
 Route::post('/store-blog', [BlogController::class, 'store']);
-
-
 
 
 //admin routes

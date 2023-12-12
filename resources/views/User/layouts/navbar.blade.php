@@ -37,7 +37,7 @@
             </form>
           </li>
           <li class="nav-item profile-item">
-            <a class="nav-link profile-link" href="#">
+            <a class="nav-link profile-link" href="{{url('profile-show/'.Auth::user()->id)}}">
                 <i class="fas fa-user-circle fa-lg"></i>
                 <span class="profile-name">{{ Auth::user()->name }}</span>
             </a>
