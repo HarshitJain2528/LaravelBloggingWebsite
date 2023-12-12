@@ -18,12 +18,12 @@
         </form>
     </div>
 
-    <div class="blog-container">
+    <div class="blog-container" id="settingsCard">
       @if(!$selectedCategory)
         {{ $posts->links('pagination::bootstrap-5') }}
       @endif
         @foreach ($posts as $post)
-            <div class="blog-card">
+            <div class="blog-card" >
                 <img src="{{ asset($post->image) }}" alt="Blog Image" class="blog-image">
                 <h2 class="blog-title">{{ $post->title }}</h2>
                 <p class="blog-excerpt">{{ Str::limit($post->content, 100) }}</p>

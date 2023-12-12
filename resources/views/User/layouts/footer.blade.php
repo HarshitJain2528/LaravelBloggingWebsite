@@ -12,5 +12,10 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Include the darkmode.js file -->
+  <script src="{{ asset('assets/js/darkmode.js') }}"></script> 
+  <script src="{{ asset('assets/js/likeButton.js') }}"></script>
+
+
 </body>
 </html>

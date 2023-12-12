@@ -74,6 +74,9 @@ class UserViewController extends Controller
     public function userProfile($id)
     {
         $users = User::where('id', $id)->get();
-        return view('User.profile', compact('users'));
+        $postCount = Post::where('user_id', $id)->count();
+        $userPosts = Post::where('user_id', $id)->get();
+        
+        return view('User.profile', compact('users','postCount', 'userPosts'));
     }
 }

@@ -2,35 +2,36 @@
 
 @section('user-profile-section')
   @include('User.layouts.navbar')
-  @foreach ($users as $user)
+  
       
   <header class="profile-header">
+    @foreach ($users as $user)
     <img src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar">
     <div class="name">{{$user->name}}</div>
-    <div class="profile-bio">Blogger | Passionate Writer | Coffee Lover</div>
+    @endforeach
     <div class="profile-stats">
-      <div class="stat">Posts: 50</div>
+      <div class="stat">Posts: {{$postCount}}</div>
     </div>
-    <a href="#" class="btn profile-edit-btn">Edit Profile</a>
   </header>
 
-  <!-- User Posts -->
   <section class="container">
     <h2 class="text-center my-4">My Posts</h2>
     <div class="row post-list">
+      @foreach ($userPosts as $userPost)
+        
       <div class="col-md-4">
         <div class="card post-card">
-          <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Post Image">
+          <img src="{{$userPost->image}}" class="card-img-top" alt="Post Image">
           <div class="card-body">
-            <h3 class="card-title">Post Title 1</h3>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
+            <h3 class="card-title">{{Str::limit($userPost->title, 30)}}</h3>
+            <p class="card-text">{{Str::limit($userPost->title, 30)}}</p>
+            <a href="{{ url('user/showblogs/' . $userPost->id) }}" class="btn btn-outline-primary">Read More</a>
           </div>
         </div>
-      </div>
+        </div>
+      @endforeach
       <!-- More posts can be added similarly -->
     </div>
   </section>
-  @endforeach
-
+  
 @endsection

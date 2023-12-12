@@ -17,6 +17,8 @@
             <i id="eyeIcon" class="fa fa-eye" aria-hidden="true"></i>
           </span>
         </div>
+        <input type="file" name="profile_image" accept="image/*" required style="margin-bottom: 15px;">
+
         <input type="submit" value="Sign Up">
         <!-- Text "Or Login" -->
         <p class="text-center my-3">Or Signup With</p>

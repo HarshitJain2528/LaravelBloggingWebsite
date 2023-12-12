@@ -19,9 +19,14 @@ use App\Http\Controllers\UserControllers\OTPVerificationController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', function () {
+    return 'Hello, World!'; // Just a test message
+});
+
 //user routes
 Route::controller(UserViewController::class)->group(function (){
-    Route::get('/', 'index');
+    // Route::get('/', 'index');
     Route::get('user/login-form', 'loginForm');
     Route::get('user/signup-form', 'signupForm');
     Route::get('user/blogs', 'blogsPage');
@@ -40,6 +45,23 @@ Route::post('otp-verify/{user}', [OTPVerificationController::class, 'verify']);
 Route::get('/otp-resend/{user}', [OTPVerificationController::class, 'resendOtp'])->name('otp.resend');
 Route::post('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
 Route::post('/store-blog', [BlogController::class, 'store']);
+Route::post('/like/{blog}', [BlogController::class, 'toggleLike'])->name('blog.toggleLike');
+Route::get('/check-like-status/{blog}', [BlogController::class, 'checkLikeStatus'])->name('blog.checkLikeStatus');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //admin routes

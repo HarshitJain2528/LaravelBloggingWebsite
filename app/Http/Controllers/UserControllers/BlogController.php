@@ -5,6 +5,9 @@ namespace App\Http\Controllers\UserControllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Like; // Replace with your model
+
 
 class BlogController extends Controller
 {
@@ -39,4 +42,31 @@ class BlogController extends Controller
         }
     }
 
+    public function toggleLike($blogId)
+    {
+        $user = User::find(auth()->id());
+        $blog = Post::find($blogId);
+
+        if ($user && $blog) {
+            if ($user->hasLiked($blog)) {
+                $user->unlike($blog);
+                return response()->json(['success' => true]);
+            } else {
+                $user->like($blog);
+                return response()->json(['success' => true]);
+            }
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function checkLikeStatus($blogId)
+    {
+        // Check if the blog post is liked by the user (pseudo-code)
+        $liked = Like::where('user_id', auth()->id())
+                     ->where('blog_id', $blogId)
+                     ->exists();
+
+        return response()->json(['liked' => $liked]);
+    }
 }

@@ -27,15 +27,31 @@ class UserAuthController extends Controller
 
         // Set the expiration time (e.g., 15 minutes from now)
         $otpExpiresAt = now()->addMinutes(1);
-
-        // Create a new user and store the numeric OTP and its expiration time in the database
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'otp' => $otp, // Store the numeric OTP
-            'otp_expires_at' => $otpExpiresAt, // Store the expiration time
-        ]);
+        
+        if ($request->hasFile('profile_image')){
+            $image = $request->file('profile_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('profile_image'), $imageName);
+            $imagePath = 'profile_image/' . $imageName;
+            
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'otp' => $otp, // Store the numeric OTP
+                'otp_expires_at' => $otpExpiresAt, // Store the expiration time
+                'profile_image' => $imagePath,
+            ]);
+        } 
+        else{
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'otp' => $otp, // Store the numeric OTP
+                'otp_expires_at' => $otpExpiresAt, // Store the expiration time
+            ]);
+        }
 
         // Send the numeric OTP to the user's email
         Mail::to($user->email)->send(new OTPMail($otp));

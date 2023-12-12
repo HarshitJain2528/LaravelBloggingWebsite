@@ -67,8 +67,8 @@
       <div class="row mb-4">
     @endif
 
-    <div class="col-md-4">
-      <div class="card mb-4 feature-card" style="height: 100%;">
+    <div class="col-md-4" >
+      <div class="card mb-4 feature-card" id="settingsCard" style="height: 100%;">
         <img src="{{$post->image}}" class="card-img-top" alt="Featured Image 1">
         <div class="card-body" style="height: 150px;">
           <h3 class="card-title">{{Str::limit($post->title, 30)}}</h3>

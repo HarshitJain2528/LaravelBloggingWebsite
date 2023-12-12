@@ -28,6 +28,8 @@ class OTPVerificationController extends Controller
             $user->otp_expires_at = null; // Clear the OTP expiration time
             $user->save();
 
+            Auth::login($user);
+
             return redirect('/')->with('success', 'You have Successfully Signed Up');
         } 
         elseif ($user->email_verified_at) {

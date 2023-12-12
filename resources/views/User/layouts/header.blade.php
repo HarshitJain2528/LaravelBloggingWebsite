@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+
   <title>Blog Homepage</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
@@ -21,16 +23,10 @@
         /* Add more dark mode styles */
     }
     .dark-mode-card {
-        background-color: #333; /* Dark background color for dark mode */
-        color: #fff; /* Text color for dark mode */
-        /* Add any other styles you want for the dark mode card */
-        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 0 20px rgba(255, 255, 255, 0.1); Example gradient box-shadow for dark mode */
-        box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.1),
-        0 1px 3px rgba(0, 0, 0, 0.08),
-        inset 0 0 20px rgba(255, 255, 255, 0.1),
-        inset 0 20px 20px -20px #ff4d4d, /* Lighter shade of red - adjust as needed */
-        inset 0 -20px 20px -20px #cc0000;
+        background-color: #333;
+        color: #fff;
+        box-shadow: 0px -1px 31px rgba(255, 102, 153, 0.8); /* Pinkish red shadow */
+
       }
 </style>
 </head>

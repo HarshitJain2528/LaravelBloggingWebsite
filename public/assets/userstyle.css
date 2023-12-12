@@ -148,7 +148,8 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .login-form input[type="text"],
 .login-form input[type="email"],
-.login-form input[type="password"] {
+.login-form input[type="password"] 
+.login-form input[type="file"] {
     width: 100%;
     margin-bottom: 20px;
     padding: 15px;
@@ -159,7 +160,8 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .login-form input[type="text"]:focus,
 .login-form input[type="email"]:focus,
-.login-form input[type="password"]:focus {
+.login-form input[type="password"]:focus
+.login-form input[type="file"]:focus {
 outline: none;
 border-color: #f44336;
 box-shadow: 0 0 0 0.25rem rgba(244, 67, 54, 0.25);
@@ -215,7 +217,7 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box Shadow */
 max-width: 800px;
 margin: 50px auto;
 padding: 20px;
-background-color: #fff;
+/* background-color: #fff; */
 border-radius: 8px;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -224,6 +226,7 @@ width: 100%;
 height: auto;
 border-radius: 8px;
 margin-bottom: 20px;
+margin-top: 12px;
 }
 .blog-title {
 font-size: 32px;
@@ -424,7 +427,6 @@ background-color: #f0f0f0;
   .blog-container {
     max-width: 900px;
     margin: 50px auto;
-    padding: 0 15px;
   }
   .blog-card {
     margin-bottom: 30px;

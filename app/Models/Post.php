@@ -20,4 +20,10 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function likesCount()
+    {
+        return $this->belongsToMany(User::class, 'blogs_likes', 'blog_id', 'user_id')->count();
+    }
+
+
 }
