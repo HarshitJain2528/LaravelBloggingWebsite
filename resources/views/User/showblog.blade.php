@@ -4,7 +4,7 @@
   @include('User.layouts.navbar')
   <div class="container">
     @foreach ($blogs as $blog)
-      <div class="blog-container" id="settingsCard">
+      <div class="blog-container settingsCard">
         <img src="{{asset($blog->image)}}" alt="Blog Image" class="blog-image">
         <h2 class="blog-title">{{$blog->title}}</h2>
         <p class="blog-content">{{$blog->content}}</p>
@@ -39,4 +39,7 @@
       color: red; /* Color for the filled heart when 'liked' class is present */
     }
   </style>
+  <script>
+    window.csrfToken = '{{ csrf_token() }}';
+</script>
 @endsection

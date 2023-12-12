@@ -11,7 +11,7 @@
         <strong>Phone:</strong> +1 123 456 7890<br>
         <strong>Address:</strong> 123 Blogging Street, City, Country
       </p>
-      <div class="contact-form" id="settingsCard">
+      <div class="contact-form settingsCard">
         <h2>Send Us a Message</h2>
         <form>
           <div class="mb-3">

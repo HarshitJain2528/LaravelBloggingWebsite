@@ -4,7 +4,7 @@
   @include('User.layouts.navbar')
   
       
-  <header class="profile-header">
+  <header class="profile-header" id="profileHeader">
     @foreach ($users as $user)
     <img src="https://via.placeholder.com/150" alt="Profile Avatar" class="profile-avatar">
     <div class="name">{{$user->name}}</div>
@@ -20,7 +20,7 @@
       @foreach ($userPosts as $userPost)
         
       <div class="col-md-4">
-        <div class="card post-card">
+        <div class="card post-card settingsCard">
           <img src="{{$userPost->image}}" class="card-img-top" alt="Post Image">
           <div class="card-body">
             <h3 class="card-title">{{Str::limit($userPost->title, 30)}}</h3>

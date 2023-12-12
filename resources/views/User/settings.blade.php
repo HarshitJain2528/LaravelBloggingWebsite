@@ -12,7 +12,7 @@
         <h2 class="text-center mb-4">Settings</h2>
         <form action="{{ route('settings.update') }}" method="POST">
             @csrf
-            <div class="card p-4 shadow-sm " id="settingsCard">
+            <div class="card p-4 shadow-sm settingsCard" >
                 <h3>Dark Mode</h3>
                 <hr>
                 <!-- Dark Mode Toggle -->

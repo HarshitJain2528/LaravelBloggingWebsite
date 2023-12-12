@@ -1,48 +1,51 @@
-// Function to enable dark mode for the settings card
-function enableDarkModeForCard() {
-    const settingsCard = document.getElementById('settingsCard');
-    if (settingsCard) {
-        settingsCard.classList.add('dark-mode-card');
-    }
+// Function to enable dark mode for all settings cards
+function enableDarkModeForCards() {
+    const settingsCards = document.querySelectorAll('.settingsCard');
+    settingsCards.forEach(card => {
+        card.classList.add('dark-mode-card');
+    });
+    console.log('Dark mode enabled for cards');
+
 }
 
-// Function to disable dark mode for the settings card
-function disableDarkModeForCard() {
-    const settingsCard = document.getElementById('settingsCard');
-    if (settingsCard) {
-        settingsCard.classList.remove('dark-mode-card');
-    }
+// Function to disable dark mode for all settings cards
+function disableDarkModeForCards() {
+    const settingsCards = document.querySelectorAll('.settingsCard');
+    settingsCards.forEach(card => {
+        card.classList.remove('dark-mode-card');
+    });
 }
 
-// Function to check user's preference for the settings card on page load
-function checkDarkModePreferenceForCard() {
+// Function to check user's preference for the settings cards on page load
+function checkDarkModePreferenceForCards() {
     const darkModeSetting = localStorage.getItem('darkMode');
-    const settingsCard = document.getElementById('settingsCard');
-    if (darkModeSetting === 'enabled' && settingsCard) {
-        enableDarkModeForCard();
+    if (darkModeSetting === 'enabled') {
+        enableDarkModeForCards();
     } else {
-        disableDarkModeForCard();
+        disableDarkModeForCards();
     }
 }
 
-// Event listener for dark mode toggle on the settings card
+// Event listener for dark mode toggle on the settings cards
 function addDarkModeToggleListener() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     if (darkModeToggle) {
         darkModeToggle.addEventListener('change', function () {
             if (darkModeToggle.checked) {
-                enableDarkModeForCard();
+                enableDarkModeForCards();
                 localStorage.setItem('darkMode', 'enabled');
             } else {
-                disableDarkModeForCard();
+                disableDarkModeForCards();
                 localStorage.setItem('darkMode', 'disabled');
             }
         });
     }
 }
 
-// Check user's dark mode preference for the settings card on page load
+
+// Check user's dark mode preference for the settings cards on page load
 document.addEventListener('DOMContentLoaded', function () {
-    checkDarkModePreferenceForCard();
+    checkDarkModePreferenceForCards();
     addDarkModeToggleListener();
 });
+

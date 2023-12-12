@@ -18,7 +18,7 @@
         </form>
     </div>
 
-    <div class="blog-container" id="settingsCard">
+    <div class="blog-container settingsCard" >
       @if(!$selectedCategory)
         {{ $posts->links('pagination::bootstrap-5') }}
       @endif

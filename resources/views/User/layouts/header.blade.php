@@ -25,9 +25,23 @@
     .dark-mode-card {
         background-color: #333;
         color: #fff;
-        box-shadow: 0px -1px 31px rgba(255, 102, 153, 0.8); /* Pinkish red shadow */
+        box-shadow: 0px -1px 16px rgba(255, 102, 153, 0.8); /* Pinkish red shadow */
 
       }
+      /* Dark mode styles for the entire categories section */
+      .dark-mode .category-section {
+          background-color: #1f1f1f; 
+          color: #fff; 
+      }
+
+    .dark-mode .dark-mode-input {
+        background-color: #333; /* Dark background color */
+        color: #fff; /* Text color in dark mode */
+        /* Additional styles for dark mode input fields */
+    }
+
+
+
 </style>
 </head>
 <body class="{{ auth()->check() && auth()->user()->dark_mode ? 'dark-mode' : '' }}">

@@ -68,12 +68,12 @@
     @endif
 
     <div class="col-md-4" >
-      <div class="card mb-4 feature-card" id="settingsCard" style="height: 100%;">
+      <div class="card mb-4 feature-card settingsCard" style="height: 100%;">
         <img src="{{$post->image}}" class="card-img-top" alt="Featured Image 1">
         <div class="card-body" style="height: 150px;">
           <h3 class="card-title">{{Str::limit($post->title, 30)}}</h3>
           <p class="card-text">{{ Str::limit($post->content, 50) }}</p>
-          <a href="#" class="btn btn-outline-primary">Read More</a>
+          <a href="{{url('user/showblogs/'.$post->id)}}" class="btn btn-outline-primary">Read More</a>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
 
 
   <!-- Categories Section -->
-  <section class="bg-light py-5">
+  <section class="bg-light py-5 category-section">
     <div class="container">
       <h2 class="text-center mb-4">Explore Categories</h2>
       <div class="row">

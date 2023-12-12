@@ -5,7 +5,7 @@
 
     <!-- Add Post Form -->
     <div class="container">
-        <div class="add-post-container">
+        <div class="add-post-container settingsCard">
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}

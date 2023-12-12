@@ -1,12 +1,6 @@
 // custom.js
 
 $(document).ready(function () {
-    // Set CSRF token for all AJAX requests
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     // Function to update like button appearance
     function updateLikeButtonAppearance(blogId, likeCheckUrl) {
@@ -39,7 +33,7 @@ $(document).ready(function () {
             url: toggleLikeUrl,
             type: 'POST',
             data: {
-                _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
+                _token: window.csrfToken // Use the CSRF token from the window object
             },
             success: function (data) {
                 if (data.success) {

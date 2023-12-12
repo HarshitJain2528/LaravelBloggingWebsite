@@ -20,13 +20,10 @@ use App\Http\Controllers\UserControllers\OTPVerificationController;
 |
 */
 
-Route::get('/', function () {
-    return 'Hello, World!'; // Just a test message
-});
 
 //user routes
 Route::controller(UserViewController::class)->group(function (){
-    // Route::get('/', 'index');
+    Route::get('/', 'index');
     Route::get('user/login-form', 'loginForm');
     Route::get('user/signup-form', 'signupForm');
     Route::get('user/blogs', 'blogsPage');
