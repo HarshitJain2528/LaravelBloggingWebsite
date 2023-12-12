@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminControllers\AuthController;
 use App\Http\Controllers\AdminControllers\AdminController;
 use App\Http\Controllers\UserControllers\UserViewController;
 use App\Http\Controllers\UserControllers\UserAuthController;
+use App\Http\Controllers\UserControllers\SettingsController;
+use App\Http\Controllers\UserControllers\BlogController;
 use App\Http\Controllers\UserControllers\OTPVerificationController;
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ use App\Http\Controllers\UserControllers\OTPVerificationController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//user routes
 Route::controller(UserViewController::class)->group(function (){
     Route::get('/', 'index');
     Route::get('user/login-form', 'loginForm');
@@ -26,13 +28,17 @@ Route::controller(UserViewController::class)->group(function (){
     Route::get('user/about', 'aboutPage');
     Route::get('user/contact', 'contactPage');
     Route::get('user/addPost', 'addPostPage');
-    Route::get('user/settings', 'settingsPage');
+    Route::get('user/showblogs/{id}', 'showBlog');
+    Route::get('user/settings', 'settingsPage')->name('settings');
 });
 Route::post('register-user', [UserAuthController::class, 'register']);
+Route::post('login', [UserAuthController::class, 'postLogin']);
+Route::post('user-logout', [UserAuthController::class, 'logout']);
 Route::get('otp/verify/{user}', [OTPVerificationController::class, 'show'])->name('otp.verify');
 Route::post('otp-verify/{user}', [OTPVerificationController::class, 'verify']);
 Route::get('/otp-resend/{user}', [OTPVerificationController::class, 'resendOtp'])->name('otp.resend');
-
+Route::post('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+Route::post('/store-blog', [BlogController::class, 'store']);
 
 
 
@@ -44,6 +50,7 @@ Route::middleware(['admin.auth'])->controller(ViewController::class)->prefix('ad
     Route::get('posts', 'posts');
     Route::get('comments', 'comments');
     Route::get('users', 'users');
+    Route::get('add-category', 'category');
     Route::get('/posts/{id}', 'show')->name('posts.show');
 });
 Route::post('/admin-login', [AuthController::class, 'adminLogin'])->name('admin.login');
@@ -52,3 +59,4 @@ Route::get('/post-destroy/{id}', [AdminController::class, 'postDestroy'])->name(
 Route::get('/comments-delete/{id}', [AdminController::class, 'commentsDelete'])->name('comments.delete');
 Route::get('/user-delete/{id}', [AdminController::class, 'userDelete'])->name('user.delete');
 Route::get('posts', [AdminController::class, 'postSearch'])->name('posts.search');
+Route::post('categories-store', [AdminController::class, 'storeCategory'])->name('categories.store');

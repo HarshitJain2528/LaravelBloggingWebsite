@@ -1,88 +1,66 @@
 @extends('User.layouts.main')
 
 @section('user-addposts-section')
+    @include('User.layouts.navbar')
 
-@include('User.layouts.navbar')
-   <!-- Add Post Form -->
-   <div class="container">
-    <div class="add-post-container">
-      <h2 class="text-center mb-4">Add New Post</h2>
-      <form enctype="multipart/form-data">
-        <div class="mb-3">
-          <label for="postTitle" class="form-label">Title</label>
-          <input type="text" class="form-control" id="postTitle" placeholder="Enter the post title" required>
+    <!-- Add Post Form -->
+    <div class="container">
+        <div class="add-post-container">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            <h2 class="text-center mb-4">Add New Post</h2>
+            <form action="{{ url('store-blog') }}" method="POST" enctype="multipart/form-data">
+                @csrf <!-- Add CSRF token for security -->
+
+                <!-- User ID Field -->
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
+                <div class="mb-3">
+                    <label for="postTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="postTitle" name="title" placeholder="Enter the post title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="postContent" class="form-label">Content</label>
+                    <textarea class="form-control" id="postContent" name="content" rows="6" placeholder="Enter the post content" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="postImage" class="form-label">Upload Image</label>
+                    <input type="file" class="form-control" id="postImage" name="image" accept="image/*" required>
+                </div>
+                <div class="mb-3">
+                    <label for="postCategory" class="form-label">Category</label>
+                    <select class="form-select" id="postCategory" name="category_id" required>
+                        <option selected disabled>Select a category</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->categoryname }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </form>
         </div>
-        <div class="mb-3">
-          <label for="postContent" class="form-label">Content</label>
-          <textarea class="form-control" id="postContent" name="postContent" rows="6" placeholder="Enter the post content" required></textarea>
-        </div>
-        <div class="mb-3">
-          <label for="postImage" class="form-label">Upload Image</label>
-          <input type="file" class="form-control" id="postImage" accept="image/*" required>
-        </div>
-        <div class="mb-3">
-          <label for="postCategory" class="form-label">Category</label>
-          <select class="form-select" id="postCategory" required>
-            <option selected disabled>Select a category</option>
-            <option value="1">Category 1</option>
-            <option value="2">Category 2</option>
-            <!-- Add categories dynamically from your database -->
-          </select>
-        </div>
-        <button type="submit" class="btn btn-submit">Submit</button>
-      </form>
     </div>
-  </div>
+@endsection
 
+{{-- 
+  <!-- Place the first <script> tag in your HTML's <head> -->
+
+  <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
   <script>
     tinymce.init({
       selector: '#postContent',
-      plugins: 'lists link image imagetools media table code wordcount',
-      toolbar: 'undo redo | formatselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | link image media table | code',
-      image_title: true,
-      automatic_uploads: true,
-      file_picker_types: 'image',
-      file_picker_callback: function(callback, value, meta) {
-        var input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
-  
-        input.onchange = function() {
-          var file = this.files[0];
-  
-          var reader = new FileReader();
-          reader.onload = function(e) {
-            callback(e.target.result, { alt: '' });
-          };
-          reader.readAsDataURL(file);
-        };
-  
-        input.click();
-      },
-      images_upload_handler: function(blobInfo, success, failure) {
-        var formData = new FormData();
-        formData.append('file', blobInfo.blob(), blobInfo.filename());
-  
-        // Send formData to your server-side script for handling file upload
-        // Replace 'YOUR_UPLOAD_ENDPOINT' with your server endpoint
-        fetch('YOUR_UPLOAD_ENDPOINT', {
-          method: 'POST',
-          body: formData,
-        })
-          .then(response => response.json())
-          .then(result => {
-            if (result.success) {
-              success(result.location);
-            } else {
-              failure('Upload failed');
-            }
-          })
-          .catch(error => {
-            failure('Upload failed: ' + error);
-          });
-      },
-      menubar: false,
-      images_upload_url: 'YOUR_UPLOAD_ENDPOINT',
+      plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ],
+      ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
     });
-  </script>
-@endsection
+  </script> --}}

@@ -28,7 +28,7 @@ class OTPVerificationController extends Controller
             $user->otp_expires_at = null; // Clear the OTP expiration time
             $user->save();
 
-            return redirect('/')->with('success', 'Email verification successful!');
+            return redirect('/')->with('success', 'You have Successfully Signed Up');
         } 
         elseif ($user->email_verified_at) {
             return redirect('user/login-form')->with('error', 'Your email is already verified. Please proceed to login.');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Category;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -42,5 +43,15 @@ class AdminController extends Controller
     
         return view('AdminFiles.posts', compact('posts'));
     
+    }
+
+    public function storeCategory(Request $request)
+    {
+        if($request->isMethod('post')){
+            $category = new Category;
+            $category->categoryname=$request->category_name;
+            $category->save(); 
+        };
+        return redirect()->back()->with(['success' => 'Category Added Successfully']);
     }
 }

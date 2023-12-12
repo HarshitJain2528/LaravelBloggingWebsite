@@ -4,11 +4,23 @@
 @include('User.layouts.navbar')
   <div class="container">
     <div class="login-card">
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @elseif(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ session('error') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
       <h2 class="text-center mb-4">Login to Your Blog</h2>
-      <form class="login-form">
-        <input type="email" placeholder="Email" required>
+      <form class="login-form" method="post" action="{{url('login')}}">
+        @csrf
+        <input type="email" name="email" placeholder="Email" required>
         <div class="position-relative">
-          <input id="passwordField" type="password" placeholder="Password" class="form-control" required>
+          <input id="passwordField" type="password" name="password" placeholder="Password" class="form-control" required>
           <span  class="position-absolute top-50 end-10 translate-middle-y" onclick="togglePassword()">
             <i id="eyeIcon" class="fa fa-eye" aria-hidden="true"></i>
           </span>

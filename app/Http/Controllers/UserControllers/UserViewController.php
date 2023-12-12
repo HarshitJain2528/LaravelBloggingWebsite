@@ -4,12 +4,17 @@ namespace App\Http\Controllers\UserControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Category;
 
 class UserViewController extends Controller
 {
     public function index()
     {
-        return view('User.home');
+        $posts = Post::inRandomOrder()->limit(6)->get();
+        $categories = Category::inRandomOrder()->limit(9)->get();
+        return view('User.home', compact('categories', 'posts'));
     }
 
     public function loginForm()
@@ -22,9 +27,20 @@ class UserViewController extends Controller
         return view('User.signup');
     }
 
-    public function blogsPage()
+    public function blogsPage(Request $request)
     {
-        return view('User.blogs');
+        $selectedCategory = $request->input('category');
+
+        if ($selectedCategory) {
+            $posts = Post::where('category_id', $selectedCategory)->get();
+        } 
+        else {
+            $posts = Post::paginate(10);
+        }
+
+        $categories = Category::all(); // Fetch all categories for the dropdown
+
+        return view('User.blogs', compact('posts', 'categories', 'selectedCategory'));
     }
 
     public function aboutPage()
@@ -39,11 +55,19 @@ class UserViewController extends Controller
 
     public function addPostPage()
     {
-        return view('User.addposts');
+        $categories = Category::all();
+        return view('User.addposts', compact('categories'));
     }
 
     public function settingsPage()
     {
-        return view('User.settings');
+        $user = auth()->user();
+        return view('User.settings', compact('user'));
+    }
+
+    public function showBlog($id)
+    {
+        $blogs = Post::where('id', $id)->get();
+        return view('User.showblog', compact('blogs'));
     }
 }

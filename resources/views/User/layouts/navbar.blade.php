@@ -22,20 +22,51 @@
             <a class="nav-link" href="{{url('user/contact')}}">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url('user/login-form')}}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('user/signup-form')}}">Sign Up</a>
+            <a class="nav-link" href="{{url('user/settings')}}"><i class="fas fa-cog"></i> Settings</a>
           </li>
           <li class="nav-item">
             <a href="{{url('user/addPost')}}" class="nav-link add-post-btn" aria-label="Add Post">
               <i class="fas fa-plus"></i>
             </a>
           </li>
+          @auth <!-- Check if the user is authenticated -->
           <li class="nav-item">
-            <a class="nav-link" href="{{url('user/settings')}}"><i class="fas fa-cog"></i> Settings</a>
+            <form action="{{url('user-logout')}}" method="POST">
+              @csrf
+              <button type="submit" class="nav-link btn btn-link">Logout</button>
+            </form>
           </li>
+          <li class="nav-item profile-item">
+            <a class="nav-link profile-link" href="#">
+                <i class="fas fa-user-circle fa-lg"></i>
+                <span class="profile-name">{{ Auth::user()->name }}</span>
+            </a>
+          </li>
+        
+            @else <!-- If user is not authenticated -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('user/login-form') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('user/signup-form') }}">Sign Up</a>
+                </li>
+            @endauth
         </ul>
       </div>
     </div>
   </nav>
+
+  <script>
+    $(document).ready(function() {
+        $('.profile-item').hover(
+            function() {
+                // Show the user's name when hovering
+                $('.profile-name').fadeIn(300);
+            },
+            function() {
+                // Hide the user's name when not hovering
+                $('.profile-name').fadeOut(300);
+            }
+        );
+    });
+  </script>

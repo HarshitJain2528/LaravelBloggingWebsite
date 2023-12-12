@@ -1,27 +1,36 @@
 @extends('User.layouts.main')
 
 @section('user-blogs-section')
-  @include('User.layouts.navbar')
-  <div class="blog-container">
-    <div class="blog-card">
-      <img src="https://via.placeholder.com/800x400.png" alt="Blog Image" class="blog-image">
-      <h2 class="blog-title">Blog Title 1</h2>
-      <p class="blog-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <a href="#" class="read-more-btn">Read More</a>
+    @include('User.layouts.navbar')
+
+    <div class="container">
+      <div class="category-filter">
+        <!-- Category Dropdown Filter -->
+        <form action="{{ url('user/blogs') }}" method="GET">
+            <select name="category" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ $selectedCategory == $category->id ? 'selected' : '' }}>
+                        {{ $category->categoryname }}
+                    </option>
+                @endforeach
+            </select>
+        </form>
     </div>
 
-    <div class="blog-card">
-      <img src="https://via.placeholder.com/800x400.png" alt="Blog Image" class="blog-image">
-      <h2 class="blog-title">Blog Title 2</h2>
-      <p class="blog-excerpt">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <a href="#" class="read-more-btn">Read More</a>
+    <div class="blog-container">
+      @if(!$selectedCategory)
+        {{ $posts->links('pagination::bootstrap-5') }}
+      @endif
+        @foreach ($posts as $post)
+            <div class="blog-card">
+                <img src="{{ asset($post->image) }}" alt="Blog Image" class="blog-image">
+                <h2 class="blog-title">{{ $post->title }}</h2>
+                <p class="blog-excerpt">{{ Str::limit($post->content, 100) }}</p>
+                <a href="{{ url('user/showblogs/' . $post->id) }}" class="read-more-btn">Read More</a>
+            </div>
+        @endforeach
     </div>
-
-    <div class="blog-card">
-      <img src="https://via.placeholder.com/800x400.png" alt="Blog Image" class="blog-image">
-      <h2 class="blog-title">Blog Title 3</h2>
-      <p class="blog-excerpt">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      <a href="#" class="read-more-btn">Read More</a>
     </div>
-  </div>
+    
 @endsection

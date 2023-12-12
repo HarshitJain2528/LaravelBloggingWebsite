@@ -19,6 +19,9 @@
                     <a class="nav-link" href="{{url('admin/users')}}">Users</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{url('/admin/add-category')}}">Add Category</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{url('/admin-logout')}}">Logout</a>
                 </li>
             </ul>

@@ -535,3 +535,28 @@ color: #fff;
 padding: 20px 0;
 text-align: center;
 }
+/* Dark mode styles */
+.dark-mode {
+  /* Define styles for dark mode */
+  background-color: #333;
+  color: #fff;
+  /* Add more styles as needed */
+}
+
+.category-filter {
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+/* Example styling for the category dropdown */
+.category-filter select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  /* Add other styles as needed */
+}
+
+.profile-item .profile-name {
+  display: none;
+}

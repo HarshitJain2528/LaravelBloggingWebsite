@@ -41,6 +41,11 @@ class ViewController extends Controller
         return view('AdminFiles.users', compact('users'));
     }
 
+    public function category()
+    {
+        return view('AdminFiles.addcategory');
+    }
+
     public function show($id)
     {
         $posts = Post::where('id', $id)->get();

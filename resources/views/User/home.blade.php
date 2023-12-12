@@ -2,6 +2,14 @@
 
 @section('user-homepage-section')
 @include('User.layouts.navbar')
+
+@if(session('success'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ session('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
+  
 <!-- Hero Section with Image Slider -->
 <section class="hero-section">
   <div id="heroCarousel" class="carousel slide position-relative mx-auto" data-bs-ride="carousel" data-bs-interval="2000">
@@ -12,7 +20,7 @@
           <div class="container">
             <h1 class="display-4">Welcome to Your Blog</h1>
             <p class="lead">Your go-to destination for insightful content on various topics.</p>
-            <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+            <a href="{{url('user/login-form')}}" class="btn btn-primary btn-lg">Get Started</a>
           </div>
         </div>
       </div>
@@ -22,7 +30,7 @@
           <div class="container">
             <h1 class="display-4">Welcome to Your Blog</h1>
             <p class="lead">Your go-to destination for insightful content on various topics.</p>
-            <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+            <a href="{{url('user/login-form')}}" class="btn btn-primary btn-lg">Get Started</a>
           </div>
         </div>
       </div>
@@ -32,7 +40,7 @@
           <div class="container">
             <h1 class="display-4">Welcome to Your Blog</h1>
             <p class="lead">Your go-to destination for insightful content on various topics.</p>
-            <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+            <a href="{{url('user/login-form')}}" class="btn btn-primary btn-lg">Get Started</a>
           </div>
         </div>
       </div>
@@ -51,71 +59,46 @@
 </section>
 
 
-  <!-- Featured Section -->
-  <section class="container my-5">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-4 feature-card">
-          <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Featured Image 1">
-          <div class="card-body">
-            <h3 class="card-title">Featured Title 1</h3>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-4 feature-card">
-          <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Featured Image 2">
-          <div class="card-body">
-            <h3 class="card-title">Featured Title 2</h3>
-            <p class="card-text">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card mb-4 feature-card">
-          <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Featured Image 3">
-          <div class="card-body">
-            <h3 class="card-title">Featured Title 3</h3>
-            <p class="card-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-            <a href="#" class="btn btn-outline-primary">Read More</a>
-          </div>
+<!-- Featured Section -->
+<section class="container my-5">
+  @php $counter = 0; @endphp
+  @foreach ($posts as $post)
+    @if ($counter % 3 == 0) <!-- Add a row after every 3 cards -->
+      <div class="row mb-4">
+    @endif
+
+    <div class="col-md-4">
+      <div class="card mb-4 feature-card" style="height: 100%;">
+        <img src="{{$post->image}}" class="card-img-top" alt="Featured Image 1">
+        <div class="card-body" style="height: 150px;">
+          <h3 class="card-title">{{Str::limit($post->title, 30)}}</h3>
+          <p class="card-text">{{ Str::limit($post->content, 50) }}</p>
+          <a href="#" class="btn btn-outline-primary">Read More</a>
         </div>
       </div>
     </div>
-  </section>
+    
+    @if (($counter + 1) % 3 == 0 || $loop->last) <!-- Close row after every 3 cards or at the end -->
+      </div>
+    @endif
+
+    @php $counter++; @endphp
+  @endforeach
+</section>
+
 
   <!-- Categories Section -->
   <section class="bg-light py-5">
     <div class="container">
       <h2 class="text-center mb-4">Explore Categories</h2>
       <div class="row">
+        @foreach ($categories as $category)
         <div class="col-md-4">
           <ul class="category-list">
-            <li><a href="#">Category 1</a></li>
-            <li><a href="#">Category 2</a></li>
-            <li><a href="#">Category 3</a></li>
-            <!-- Add more categories -->
+            <li><a href="#">{{$category->categoryname}}</a></li>
           </ul>
         </div>
-        <div class="col-md-4">
-          <ul class="category-list">
-            <li><a href="#">Category 4</a></li>
-            <li><a href="#">Category 5</a></li>
-            <li><a href="#">Category 6</a></li>
-            <!-- Add more categories -->
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <ul class="category-list">
-            <li><a href="#">Category 7</a></li>
-            <li><a href="#">Category 8</a></li>
-            <li><a href="#">Category 9</a></li>
-            <!-- Add more categories -->
-          </ul>
-        </div>
+        @endforeach
       </div>
     </div>
   </section>
