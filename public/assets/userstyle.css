@@ -568,3 +568,60 @@ text-align: center;
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+        /* Define the styles for the empty and filled heart icon */
+        .like-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 20px;
+      }
+
+      .like-button .far {
+          color: #ccc; /* Color for the empty heart */
+      }
+
+      .like-button.liked .far {
+          display: none; /* Hide the empty heart icon when 'liked' */
+      }
+
+      .like-button.liked .fas {
+          color: red; /* Color for the filled heart when 'liked' class is present */
+      }
+ 
+/* Styling the send icon */
+.send-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #aaa; /* Adjust icon color */
+  cursor: pointer;
+}
+
+/* Adjust icon size if needed */
+.send-icon:before {
+  font-size: 20px;
+}
+/* Adjustments for the comment form */
+.modal-footer {
+  padding: 10px 15px;
+  border-top: none;
+}
+
+.textarea-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.with-send-icon {
+  width: calc(100% - 40px);
+  margin-right: 10px;
+}
+
+.storecomment {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}

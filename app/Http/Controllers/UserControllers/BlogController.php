@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Like; // Replace with your model
+use App\Models\Like;
+use App\Models\Comment;
 
 
 class BlogController extends Controller
@@ -68,5 +69,28 @@ class BlogController extends Controller
                      ->exists();
 
         return response()->json(['liked' => $liked]);
+    }
+
+    public function commentStore(Request $request, $blogId)
+    {
+        $validatedData = $request->validate([
+            'content' => 'required|max:255',
+        ]);
+
+        $category_id = $request->get('category_id');
+
+        $comment = new Comment();
+        $comment->post_id = $blogId;
+        $comment->comments = $validatedData['content'];
+        $comment->category_id = $category_id; // Assign category_id to the comment
+        $comment->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function comments($blogId)
+    {
+        $comments = Comment::where('post_id', $blogId)->get();
+        return response()->json(['comments' => $comments]);
     }
 }

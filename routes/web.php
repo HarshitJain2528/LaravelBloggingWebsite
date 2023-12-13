@@ -29,11 +29,11 @@ Route::controller(UserViewController::class)->group(function (){
     Route::get('user/signup-form', 'signupForm');
     Route::get('user/blogs', 'blogsPage');
     Route::get('user/about', 'aboutPage');
-    Route::get('user/contact', 'contactPage');
-    Route::get('user/addPost', 'addPostPage');
-    Route::get('user/showblogs/{id}', 'showBlog');
+    Route::get('user/contact', 'contactPage')->middleware('auth.user');
+    Route::get('user/addPost', 'addPostPage')->middleware('auth.user');
+    Route::get('user/showblogs/{id}', 'showBlog')->middleware('auth.user');
     Route::get('profile-show/{id}', 'userProfile');
-    Route::get('user/settings', 'settingsPage')->name('settings');
+    Route::get('user/settings', 'settingsPage')->name('settings')->middleware('auth.user');
 });
 Route::post('register-user', [UserAuthController::class, 'register']);
 Route::post('login', [UserAuthController::class, 'postLogin']);
@@ -50,6 +50,8 @@ Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 
+Route::post('/blogs/{blog}/comments', [BlogController::class, 'commentStore'])->name('comments.store');
+Route::get('/blogs/{blog}/comments', [BlogController::class, 'comments'])->name('comments');
 
 
 
