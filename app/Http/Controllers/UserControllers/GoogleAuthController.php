@@ -4,14 +4,13 @@ namespace App\Http\Controllers\UserControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 use App\Models\User;
+
 class GoogleAuthController extends Controller
 {
-    // use AuthenticatesUsers;
 
     public function __construct()
     {
@@ -48,7 +47,9 @@ class GoogleAuthController extends Controller
 
                     'email' => $user->email,
 
-                    'google_id'=> $user->id
+                    'google_id'=> $user->id,
+
+                    'password' => Hash::make('123')
 
                 ]);
 
