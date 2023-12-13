@@ -15,7 +15,7 @@
   <div id="heroCarousel" class="carousel slide position-relative mx-auto" data-bs-ride="carousel" data-bs-interval="2000">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://via.placeholder.com/1000x500" class="d-block w-100" alt="Slide 1">
+        <img src="{{asset('assets/images/gaming.jpg')}}" class="d-block w-100" alt="Slide 1">
         <div class="carousel-caption d-md-block">
           <div class="container">
             <h1 class="display-4">Welcome to Your Blog</h1>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://via.placeholder.com/1000x500" class="d-block w-100" alt="Slide 2">
+        <img src="{{asset('assets/images/tech.jpg')}}" class="d-block w-100" alt="Slide 2">
         <div class="carousel-caption d-md-block">
           <div class="container">
             <h1 class="display-4">Welcome to Your Blog</h1>
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="https://via.placeholder.com/1000x500" class="d-block w-100" alt="Slide 3">
+        <img src="{{asset('assets/images/cars.jpg')}}" class="d-block w-100" alt="Slide 3">
         <div class="carousel-caption d-md-block">
           <div class="container">
             <h1 class="display-4">Welcome to Your Blog</h1>

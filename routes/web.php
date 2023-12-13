@@ -9,6 +9,7 @@ use App\Http\Controllers\UserControllers\UserAuthController;
 use App\Http\Controllers\UserControllers\SettingsController;
 use App\Http\Controllers\UserControllers\BlogController;
 use App\Http\Controllers\UserControllers\OTPVerificationController;
+use App\Http\Controllers\UserControllers\GoogleAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,9 @@ Route::post('/settings/update', [SettingsController::class, 'update'])->name('se
 Route::post('/store-blog', [BlogController::class, 'store']);
 Route::post('/like/{blog}', [BlogController::class, 'toggleLike'])->name('blog.toggleLike');
 Route::get('/check-like-status/{blog}', [BlogController::class, 'checkLikeStatus'])->name('blog.checkLikeStatus');
+
+Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 
 

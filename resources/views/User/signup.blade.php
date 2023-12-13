@@ -17,15 +17,13 @@
             <i id="eyeIcon" class="fa fa-eye" aria-hidden="true"></i>
           </span>
         </div>
-        <input type="file" name="profile_image" accept="image/*" required style="margin-bottom: 15px;">
-
         <input type="submit" value="Sign Up">
         <!-- Text "Or Login" -->
         <p class="text-center my-3">Or Signup With</p>
         <!-- Social login buttons -->
-        <button class="btn btn-google my-3 btn-social">
+        <a href="{{url('auth/google')}} " class="btn btn-google my-3 btn-social">
           <i class="fab fa-google"></i> Sign up with Google
-        </button>
+        </a>
         <button class="btn btn-facebook btn-social" type="button">
           <i class="fab fa-facebook-f"></i> Sign up with Facebook
         </button>
