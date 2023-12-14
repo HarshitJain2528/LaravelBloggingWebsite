@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\UserActivityLog;
+
 
 class ViewController extends Controller
 {
@@ -20,7 +22,8 @@ class ViewController extends Controller
         $totalPosts = Post::count();
         $totalComments = Comment::count();
         $totalUsers = User::count();
-        return view('AdminFiles.dashboard', compact('totalPosts', 'totalComments', 'totalUsers'));
+        $userActivities = UserActivityLog::with('user')->orderBy('created_at', 'desc')->take(2)->get();
+        return view('AdminFiles.dashboard', compact('totalPosts', 'totalComments', 'totalUsers', 'userActivities'));
     }
 
     public function posts()

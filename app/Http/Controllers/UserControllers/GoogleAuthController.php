@@ -29,17 +29,17 @@ class GoogleAuthController extends Controller
         try {
 
             $user = Socialite::driver('google')->user();
-
+            // dd($user);
             $finduser = User::where('google_id', $user->id)->first();
 
-            // if($finduser){
+            if($finduser){
 
-            //     Auth::login($finduser);
+                Auth::login($finduser);
 
-            //     return return redirect('/');
+                return redirect('/');
 
-            // }
-            // else{
+            }
+            else{
 
                 $newUser = User::create([
 
@@ -57,12 +57,12 @@ class GoogleAuthController extends Controller
 
                 return redirect('/');
 
-            // }
+            }
 
         } catch (Exception $e) {
 
-            return redirect('auth/google');
-
+            // return redirect('auth/google');
+            dd($e->getMessage()); 
         }
 
     }

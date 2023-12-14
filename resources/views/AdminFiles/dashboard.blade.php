@@ -47,7 +47,18 @@
                 <div class="card dashboard-card">
                     <div class="card-body">
                         <h5 class="card-title">Recent Activity</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        @if($userActivities->isEmpty())
+                            <p class="card-text">No recent user activities found.</p>
+                        @else
+                            <ul>
+                                @foreach($userActivities as $activity)
+                                    <li>
+                                        User {{ $activity->user->name }} {{ $activity->action }} - {{ $activity->description }}
+                                        <small>{{ $activity->created_at }}</small>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>

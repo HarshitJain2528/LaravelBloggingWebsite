@@ -10,6 +10,7 @@ use App\Http\Controllers\UserControllers\SettingsController;
 use App\Http\Controllers\UserControllers\BlogController;
 use App\Http\Controllers\UserControllers\OTPVerificationController;
 use App\Http\Controllers\UserControllers\GoogleAuthController;
+use App\Http\Controllers\UserControllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +50,7 @@ Route::get('/check-like-status/{blog}', [BlogController::class, 'checkLikeStatus
 Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
+Route::post('contact-us',[ContactController::class, 'contactUs']);
 
 Route::post('/blogs/{blog}/comments', [BlogController::class, 'commentStore'])->name('comments.store');
 Route::get('/blogs/{blog}/comments', [BlogController::class, 'comments'])->name('comments');

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OTPMail;
+use App\Models\UserActivityLog;
+
 
 class UserAuthController extends Controller
 {
@@ -52,8 +54,13 @@ class UserAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            
+            UserActivityLog::create([
+                'user_id' => Auth::user()->id,
+                'action' => 'Logged In',
+                'description' => 'User logged in: ' . Auth::user()->name,
+            ]);
             return redirect('/')->with('success','You have Successfully loggedin');
-
         }
         return redirect("login")->with('error', 'Oppes! You have entered invalid credentials');
     }

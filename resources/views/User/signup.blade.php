@@ -21,7 +21,7 @@
         <!-- Text "Or Login" -->
         <p class="text-center my-3">Or Signup With</p>
         <!-- Social login buttons -->
-        <a href="{{url('auth/google')}} " class="btn btn-google my-3 btn-social">
+        <a href="{{url('auth/google')}}" class="btn btn-google my-3 btn-social">
           <i class="fab fa-google"></i> Sign up with Google
         </a>
         <button class="btn btn-facebook btn-social" type="button">

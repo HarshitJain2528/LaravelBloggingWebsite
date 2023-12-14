@@ -32,9 +32,9 @@
         <!-- Text "Or Login" -->
         <p class="text-center my-3">Or Login</p>
         <!-- Social login buttons -->
-        <button class="btn btn-google my-3 btn-social">
+        <a href="{{url('auth/google')}}" class="btn btn-google my-3 btn-social">
           <i class="fab fa-google"></i> Sign in with Google
-        </button>
+        </a>
         <button class="btn btn-facebook btn-social" type="button">
           <i class="fab fa-facebook-f"></i> Sign in with Facebook
         </button>

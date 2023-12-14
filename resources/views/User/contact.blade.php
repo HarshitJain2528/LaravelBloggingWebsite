@@ -4,6 +4,12 @@
 @include('User.layouts.navbar')
   <section class="contact-section">
     <div class="container">
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
       <h1 class="contact-title">Contact Us</h1>
       <p class="contact-info">
         Have any questions or suggestions? Feel free to get in touch with us. Your feedback is valuable to us!<br>
@@ -13,15 +19,16 @@
       </p>
       <div class="contact-form settingsCard">
         <h2>Send Us a Message</h2>
-        <form>
+        <form method="post" action="{{url('contact-us')}}">
+          @csrf
           <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Your Name" required>
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
           </div>
           <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Your Email" required>
+            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
           </div>
           <div class="mb-3">
-            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+            <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
