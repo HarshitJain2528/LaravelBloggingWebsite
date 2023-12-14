@@ -9,7 +9,6 @@ use App\Models\Comment;
 use App\Models\User;
 use App\Models\UserActivityLog;
 
-
 class ViewController extends Controller
 {
     public function index()
@@ -23,7 +22,21 @@ class ViewController extends Controller
         $totalComments = Comment::count();
         $totalUsers = User::count();
         $userActivities = UserActivityLog::with('user')->orderBy('created_at', 'desc')->take(2)->get();
-        return view('AdminFiles.dashboard', compact('totalPosts', 'totalComments', 'totalUsers', 'userActivities'));
+
+        $postsPerCategory = Post::selectRaw('COUNT(*) as count')
+            ->groupBy('category_id')
+            ->get()
+            ->pluck('count')
+            ->toArray();
+
+        $categoryLabels = Post::select('categories.categoryname')
+            ->join('categories', 'categories.id', '=', 'posts.category_id')
+            ->groupBy('categories.categoryname')
+            ->pluck('categories.categoryname')
+            ->toArray();
+        $userPostsData = User::withCount('posts')->get()->pluck('posts_count');
+
+        return view('AdminFiles.dashboard', compact('totalPosts', 'totalComments', 'totalUsers', 'userActivities','categoryLabels', 'postsPerCategory', 'userPostsData'));
     }
 
     public function posts()

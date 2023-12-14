@@ -58,7 +58,13 @@
                                     </li>
                                 @endforeach
                             </ul>
-                        @endif
+                            @endif
+                        </div>
+                    </div>
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Users-Posts Relationship</h5>
+                        <canvas id="usersPostsChart" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
@@ -66,10 +72,61 @@
                 <div class="card dashboard-card">
                     <div class="card-body">
                         <h5 class="card-title">Site Statistics</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <canvas id="siteStatisticsChart" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('siteStatisticsChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($categoryLabels) !!},
+                datasets: [{
+                    label: 'Number of Posts per Category',
+                    data: {!! json_encode($postsPerCategory) !!},
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var userPostsCtx = document.getElementById('usersPostsChart').getContext('2d');
+        var userPostsData = {!! json_encode($userPostsData) !!};
+        var userPostsLabels = Object.keys(userPostsData);
+        var userPostsValues = Object.values(userPostsData);
+
+        var usersPostsChart = new Chart(userPostsCtx, {
+            type: 'bar',
+            data: {
+                labels: userPostsLabels,
+                datasets: [{
+                    label: 'Number of Posts by User',
+                    data: userPostsValues,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 @endsection

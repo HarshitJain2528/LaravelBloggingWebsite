@@ -11,6 +11,7 @@ use App\Http\Controllers\UserControllers\BlogController;
 use App\Http\Controllers\UserControllers\OTPVerificationController;
 use App\Http\Controllers\UserControllers\GoogleAuthController;
 use App\Http\Controllers\UserControllers\ContactController;
+use App\Http\Controllers\UserControllers\FacebookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,7 +57,10 @@ Route::post('/blogs/{blog}/comments', [BlogController::class, 'commentStore'])->
 Route::get('/blogs/{blog}/comments', [BlogController::class, 'comments'])->name('comments');
 
 
-
+Route::prefix('facebook')->group( function(){
+    Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
+    Route::get('callback', [FaceBookController::class, 'facebookCallback'])->name('callback');
+});
 
 
 

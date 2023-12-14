@@ -35,6 +35,12 @@ return [
         'client_id' => '808755627469-lqqv3q0lo1idt19m13olrl6crl1212au.apps.googleusercontent.com',
         'client_secret' => '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',
         'redirect' => 'http://localhost/Larvavel-New-Project/LaravelBloggingWebsite/public/auth/google/callback',
-      ],
+    ],
+
+    'facebook' => [
+        'client_id' => '885004989588277',
+        'client_secret' => 'e61eee914f80e14419c5a1de3d328155',
+        'redirect' => 'http://localhost/Larvavel-New-Project/LaravelBloggingWebsite/public/facebook/callback/'
+    ],
 
 ];

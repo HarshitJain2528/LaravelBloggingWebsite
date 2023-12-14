@@ -20,32 +20,20 @@
                     <input type="checkbox" id="darkModeToggle" name="darkModeToggle" {{ optional($user)->dark_mode ? 'checked' : '' }}>
                     <span class="slider round"></span>
                 </label>
-
-                <h3>Email Notifications</h3>
-                <hr>
-                <label for="emailToggle" class="form-check-label mb-3">
-                    <input type="checkbox" id="emailToggle" name="emailToggle" {{ optional($user)->email_notifications ? 'checked' : '' }}>
-                    Receive Email Notifications
-                </label>
-
-                <h3>Privacy</h3>
-                <hr>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="privacyOptions" id="public" {{ optional($user)->privacy === 'public' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="public">
-                        Public Profile
-                    </label>
-                </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="privacyOptions" id="private" {{ optional($user)->privacy === 'private' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="private">
-                        Private Profile
-                    </label>
-                </div>
                 <button class="btn btn-primary">Save Changes</button>
             </div>
         </form>
     </section>
+    <style>
+        .footer{
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position:fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 
-    
 @endsection

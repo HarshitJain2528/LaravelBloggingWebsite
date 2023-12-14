@@ -35,9 +35,9 @@
         <a href="{{url('auth/google')}}" class="btn btn-google my-3 btn-social">
           <i class="fab fa-google"></i> Sign in with Google
         </a>
-        <button class="btn btn-facebook btn-social" type="button">
+        <a href="{{url('facebook/auth')}}" class="btn btn-facebook btn-social" type="button">
           <i class="fab fa-facebook-f"></i> Sign in with Facebook
-        </button>
+        </a>
       </form>
     </div>
   </div>
@@ -45,7 +45,7 @@
     function togglePassword() {
       const passwordField = document.getElementById('passwordField');
       const eyeIcon = document.getElementById('eyeIcon');
-  
+
       if (passwordField.type === 'password') {
         passwordField.type = 'text';
         eyeIcon.classList.remove('fa-eye');

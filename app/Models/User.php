@@ -11,7 +11,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'otp', 'otp_expires_at','profile_image','google_id'
+        'name', 'email', 'password', 'otp', 'otp_expires_at','profile_image','google_id','facebook_id'
     ];
 
     protected $hidden = [
@@ -22,6 +22,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'otp_expires_at' => 'datetime',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
     public function likedBlogs()
     {
