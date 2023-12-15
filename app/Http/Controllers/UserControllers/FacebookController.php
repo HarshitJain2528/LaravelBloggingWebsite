@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use App\Models\UserActivityLog;
 use Exception;
 
 class FacebookController extends Controller
@@ -29,7 +30,7 @@ class FacebookController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect()->intended('dashboard');
+                return redirect()->intended('/');
 
             }else{
                 $newUser = User::create([
@@ -41,7 +42,12 @@ class FacebookController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect()->intended('dashboard');
+                UserActivityLog::create([
+                    'user_id' => Auth::user()->id,
+                    'action' => 'Logged In',
+                    'description' => 'User logged in: ' . Auth::user()->name,
+                ]);
+                return redirect()->intended('/');
             }
 
         } catch (Exception $e) {

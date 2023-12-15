@@ -72,7 +72,7 @@
                 <div class="card dashboard-card">
                     <div class="card-body">
                         <h5 class="card-title">Site Statistics</h5>
-                        <canvas id="siteStatisticsChart" width="400" height="200"></canvas>
+                        <canvas id="siteStatisticsChart" width="400" height="310"></canvas>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
     <script>
         var ctx = document.getElementById('siteStatisticsChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: {!! json_encode($categoryLabels) !!},
                 datasets: [{

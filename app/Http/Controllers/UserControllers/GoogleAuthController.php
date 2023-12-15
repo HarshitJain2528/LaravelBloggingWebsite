@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 use App\Models\User;
+use App\Models\UserActivityLog;
 
 class GoogleAuthController extends Controller
 {
@@ -36,7 +37,7 @@ class GoogleAuthController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/');
+                return redirect()->intended('/');
 
             }
             else{
@@ -55,7 +56,12 @@ class GoogleAuthController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect('/');
+                UserActivityLog::create([
+                    'user_id' => Auth::user()->id,
+                    'action' => 'Logged In',
+                    'description' => 'User logged in: ' . Auth::user()->name,
+                ]);
+                return redirect()->intended('/');
 
             }
 
