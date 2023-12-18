@@ -18,12 +18,6 @@ class SettingsController extends Controller
         // Handle dark mode toggle
         $user->dark_mode = $request->has('darkModeToggle');
 
-        // Handle email notification toggle
-        $user->email_notifications = $request->input('emailToggle') ? true : false;
-
-        // Handle privacy settings
-        $user->privacy = $request->input('privacyOptions') == 'private' ? 'private' : 'public';
-
         // Save changes
         $user->save();
 
